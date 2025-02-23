@@ -1,0 +1,46 @@
+TABLES: ZBANK_CUSTOMER.
+
+DATA: BEGIN OF ZBANK_CUSTOMER,
+  CUSTOMER_ID TYPE CHAR10,    "Unique Customer ID (Primary Key)
+  NAME TYPE CHAR50,           "Customer Name
+  DOB TYPE DATS,              "Date of Birth
+  ADDRESS TYPE CHAR100,        "Address
+END OF ZBANK_CUSTOMER.
+
+
+TABLES: ZBANK_ACCOUNT.
+
+DATA: BEGIN OF ZBANK_ACCOUNT,
+  ACCOUNT_ID TYPE CHAR10,     "Unique Account ID (Primary Key)
+  CUSTOMER_ID TYPE CHAR10,    "Customer ID (Foreign Key)
+  BALANCE TYPE CURR15_2,      "Account Balance
+END OF ZBANK_ACCOUNT.
+
+
+TABLES: ZBANK_CARD.
+
+DATA: BEGIN OF ZBANK_CARD,
+  CARD_ID TYPE CHAR10,        "Unique Card ID (Primary Key)
+  ACCOUNT_ID TYPE CHAR10,     "Account ID (Foreign Key)
+  PIN TYPE NUMC4,             "Card PIN (Encrypted in real scenarios)
+END OF ZBANK_CARD.
+
+
+TABLES: ZBANK_TRANSACTIONS.
+
+DATA: BEGIN OF ZBANK_TRANSACTIONS,
+  TRANSACTION_ID TYPE CHAR10,  "Unique Transaction ID (Primary Key)
+  ACCOUNT_ID TYPE CHAR10,      "Account ID (Foreign Key)
+  TRANSACTION_TYPE TYPE CHAR10,"DEPOSIT/WITHDRAW
+  AMOUNT TYPE CURR15_2,        "Transaction Amount
+  TRANSACTION_DATE TYPE DATS,  "Date of Transaction
+END OF ZBANK_TRANSACTIONS.
+
+
+TABLES: ZBANK_ATM_CASH.
+
+DATA: BEGIN OF ZBANK_ATM_CASH,
+  ATM_ID TYPE CHAR10,        "Unique ATM ID (Primary Key)
+  DENOMINATION TYPE NUMC3,   "5, 10, 20, 50, 100
+  QUANTITY TYPE INT4,        "Available Notes
+END OF ZBANK_ATM_CASH.
