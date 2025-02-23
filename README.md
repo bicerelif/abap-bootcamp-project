@@ -26,7 +26,6 @@ This project consists of **custom tables**, **function modules**, and **reports*
 - `ZBANK_UPDATE_ATM_CASH` – Updates ATM cash levels after withdrawal.
 
 ### 3️⃣ **Reports & Screens**
-- **Customer Management Report** – View/Edit customer details.
 - **ATM Transaction Report** – Displays transaction history.
 - **ATM Cash Status Report** – Shows cash availability in ATMs.
 
