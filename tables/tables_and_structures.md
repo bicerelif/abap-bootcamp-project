@@ -1,46 +1,46 @@
 ## Need to create database tables in SE11 to store customer details, bank account information, transaction history, and ATM cash details.
 
-# Customer Master Table (`ZBANK_CUSTOMER`)
+# Customer Master Table (`ZBANK_CUSTOMER_TA`)
 
 | Field Name   | Data Element | Type   | Description               |
 |-------------|-------------|--------|---------------------------|
-| `CUSTOMER_ID` | CHAR10      | Key    | Unique Customer Identifier |
-| `FIRST_NAME`  | CHAR30      |        | First Name                |
-| `LAST_NAME`   | CHAR30      |        | Last Name                 |
+| `CUSTOMER_ID` | GUID      | Key    | Unique Customer Identifier |
+| `FIRST_NAME`  | CHAR15      |        | First Name                |
+| `LAST_NAME`   | CHAR15      |        | Last Name                 |
 | `DOB`         | DATS        |        | Date of Birth             |
 | `ADDRESS`     | CHAR100     |        | Customer Address          |
-| `PHONE`       | CHAR15      |        | Contact Number            |
+| `PHONE`       | CHAR30      |        | Contact Number            |
 
 ---
 
-# Bank Account Table (`ZBANK_ACCOUNT`)
+# Bank Account Table (`ZBANK_ACCOUNT_TA`)
 
 | Field Name    | Data Element | Type    | Description                  |
 |--------------|-------------|---------|------------------------------|
-| `ACCOUNT_ID`  | CHAR12      | Key     | Unique Account Identifier    |
-| `CUSTOMER_ID` | CHAR10      | Foreign Key | Customer owning the account |
-| `BALANCE`     | CURR13,2    |         | Account Balance              |
+| `CUSTOMER_ID'  | GUID     | Key     | Unique Account Identifier    |
+| `ACCOUNT_ID` | CHAR12      |  | Customer owning the account |
+| `BALANCE`     |    |         | Account Balance              |
 
 ---
 
-# Bank Card Table (`ZBANK_CARD`)
+# Bank Card Table (`ZBANK_CARD_TA`)
 
 | Field Name   | Data Element | Type    | Description                |
 |-------------|-------------|---------|----------------------------|
-| `CARD_ID`   | CHAR16      | Key     | Unique Card Number        |
+| `CARD_ID`   | CHAR16     | Key     | Unique Card Number        |
 | `ACCOUNT_ID` | CHAR12      | Foreign Key | Linked Bank Account  |
 | `PIN`       | CHAR4       |         | Encrypted PIN              |
-| `STATUS`    | CHAR1       |         | A (Active) / B (Blocked)   |
-
+| `CARD STATUS`    | CHAR1       |         | A (Active) / B (Blocked)   |
+| `BALANCE`   | CHAR16     |      |        |
 ---
 
-# Transaction History Table (`ZBANK_TRANSACTIONS`)
+# Transaction History Table (`ZBANK_TRANSACTIO`)
 
 | Field Name        | Data Element | Type    | Description                      |
 |------------------|-------------|---------|----------------------------------|
-| `TRANSACTION_ID` | CHAR12      | Key     | Unique Transaction ID           |
-| `ACCOUNT_ID`    | CHAR12      | Foreign Key | Associated Account       |
-| `CARD_ID`       | CHAR16      | Foreign Key | Associated Card          |
+| `TRANSACTION_ID` | GUID     | Key     | Unique Transaction ID           |
+| `ACCOUNT_ID`    | CHAR12      |  | Associated Account       |
+| `CARD_ID`       | CHAR16      |  | Associated Card          |
 | `TRANSACTION_TYPE` | CHAR10    |         | Deposit/Withdraw/Inquiry       |
 | `AMOUNT`        | CURR13,2    |         | Amount Transacted               |
 | `TRANSACTION_DATE` | DATS      |         | Date of Transaction            |
@@ -48,10 +48,11 @@
 
 ---
 
-# ATM Cash Availability Table (`ZBANK_ATM_CASH`)
+# ATM Cash Availability Table (`ZBANK_ATM_CASH_T`)
 
 | Field Name     | Data Element | Type  | Description                 |
 |---------------|-------------|------|-----------------------------|
-| `ATM_ID`      | CHAR8       | Key  | Unique ATM Identifier       |
-| `DENOMINATION` | NUMC3      | Key  | Banknote (5, 10, 20, 50, 100) |
+|`P_KEY`      | GUID       |   | Unique ATM Identifier      
+| `ATM_NR`      |        |   | Unique ATM Identifier       |
+| `DENOMINATION` | INT4      |   | Banknote (5, 10, 20, 50, 100) |
 | `QUANTITY`    | INT4       |      | Number of Banknotes Available |
