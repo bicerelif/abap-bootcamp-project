@@ -8,7 +8,7 @@ DATA: lt_atm_cash TYPE TABLE OF zbank_atm_cash_t,
 DATA: lt_denominations TYPE TABLE OF int4,
       lv_atm_id TYPE raw16.
 
-lt_denominations = VALUE #( ( 5 ) ( 10 ) ( 20 ) ( 50 ) ( 100 ) ( 200 ) ( 500 ) ).
+lt_denominations = VALUE #( ( 5 ) ( 10 ) ( 20 ) ( 50 ) ( 100 )  ).
 
 DO 3 TIMES.
   lv_atm_id = cl_reca_guid=>get_new_guid( ).
