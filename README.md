@@ -9,21 +9,21 @@ This project implements an **ATM Banking System** using **SAP ABAP**, allowing c
 - Monitor ATM cash availability.
 
 ## 📂 Components
-This project consists of **custom tables**, **function modules**, and **reports**:
+This project consists of **custom tables**, **class**, and **reports**:
 
 ### 1️⃣ **Database Tables**
-- **Customer Master Table (`ZBANK_CUSTOMER`)** – Stores customer information.
-- **Bank Account Table (`ZBANK_ACCOUNT`)** – Stores account details and balance.
-- **Bank Card Table (`ZBANK_CARD`)** – Links bank accounts to cards.
-- **Transaction History Table (`ZBANK_TRANSACTIONS`)** – Logs customer transactions.
-- **ATM Cash Availability Table (`ZBANK_ATM_CASH`)** – Tracks ATM banknote availability.
+- **Customer Master Table (`ZBANK_CUSTOMER_TA`)** – Stores customer information.
+- **Bank Account Table (`ZBANK_ACCOUNT_TA`)** – Stores account details and balance.
+- **Bank Card Table (`ZBANK_CARD_TA`)** – Links bank accounts to cards.
+- **Transaction History Table (`ZBANK_TRANSACTIO`)** – Logs customer transactions.
+- **ATM Cash Availability Table (`ZBANK_ATM_CASH_TA`)** – Tracks ATM banknote availability.
 
-### 2️⃣ **Function Modules**
-- `ZBANK_DEPOSIT_MONEY` – Deposits money into an account.
-- `ZBANK_WITHDRAW_MONEY` – Withdraws money from an ATM.
-- `ZBANK_DISPLAY_BALANCE` – Displays account balance.
-- `ZBANK_VALIDATE_CARD` – Validates card and PIN authentication.
-- `ZBANK_UPDATE_ATM_CASH` – Updates ATM cash levels after withdrawal.
+### 2️⃣ **Classes**
+- `ZCL_DEPOSIT` – Deposits money into an account.
+- `ZCL_WITHDRAW` – Withdraws money from an ATM.
+- `ZCL_DISPLAY` – Displays account balance.
+- `ZBANK_VALIDATE` – Validates card and PIN authentication.
+
 
 ### 3️⃣ **Reports & Screens**
 - **ATM Transaction Report** – Displays transaction history.
