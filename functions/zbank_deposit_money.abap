@@ -36,3 +36,38 @@ PUBLIC SECTION.
         IV_ACCOUNT_ID  TYPE ty_account-id
         IV_AMOUNT      TYPE ty_amount
         EV_NEW_BALANCE TYPE zbank_account_ta-balance.
+
+
+
+
+METHOD UPDATE_BALANCE.
+  DATA: ls_account TYPE zbank_account_ta,
+        lv_new_balance TYPE zbank_account_ta-balance.
+
+
+  SELECT SINGLE * FROM zbank_account_ta INTO ls_account
+    WHERE customer_id = iv_account_id.
+
+
+  IF sy-subrc = 0.
+
+    lv_new_balance = ls_account-balance + iv_amount.
+
+    UPDATE zbank_account_ta
+      SET balance = lv_new_balance
+      WHERE customer_id = iv_account_id.
+
+
+    IF sy-subrc = 0.
+
+      ev_new_balance = lv_new_balance.
+    ELSE.
+
+      ev_new_balance = ls_account-balance.
+
+    ENDIF.
+  ELSE.
+
+    CLEAR ev_new_balance.
+  ENDIF.
+ENDMETHOD.
