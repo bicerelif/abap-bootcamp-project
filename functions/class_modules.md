@@ -2,9 +2,7 @@
 
 - ## ZCL_DEPOSIT_MONEY
 
-**Purpose:** Deposits money into an account.
-METHODS:
-
+**METHODS::**
 UPDATE_BALANCE
 UPDATE_TRANSACTIONS
 
@@ -25,8 +23,8 @@ TY_AMOUNT
 
 - ## ZCL_WITHDRAW
 
-**Purpose:** Withdraws money from an ATM.
-METHODS
+**METHODS::** .
+
 
 
 **Parameters:**
@@ -45,8 +43,8 @@ EV_NEW_BALANCE (Output) – Updated account balance.
 
 - ## ZCL_DISPLAY
 
-**Purpose:** Displays the current account balance.
-METHODS:
+**METHODS::** 
+
 CHECK_BALANCE
 CHECK_ATM_BALANCE
 
@@ -63,8 +61,7 @@ THERE IS NO TYPES.
 
 - ## ZCL_VALIDATION
 
-**Purpose:** Validates a card and PIN authentication.
-METHODS:
+**METHODS::**
 CHECK_STATUS
 
 **Parameters:**
