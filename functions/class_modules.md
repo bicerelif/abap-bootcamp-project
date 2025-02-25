@@ -1,30 +1,33 @@
 # 2️⃣ Class Modules
 
-- ## ZBANK_DEPOSIT_MONEY
+- ## ZCL_DEPOSIT_MONEY
 
 **Purpose:** Deposits money into an account.
+METHODS:
+
+UPDATE_BALANCE
+UPDATE_TRANSACTIONS
 
 **Parameters:**
 
-IV_ACCOUNT_ID (Input) – Account ID.
+IV_ACCOUNT_ID (IMPORTING) – Account ID.
 
-IV_AMOUNT (Input) – Amount to be deposited.
+IV_AMOUNT (IMPORTING) – Amount to be deposited.
 
-EV_NEW_BALANCE (Output) – Updated balance after deposit.
+EV_NEW_BALANCE (EXPORTING) – Updated balance after deposit.
 
-**Logic:**
+**TYPES:**
 
-Validate account existence.
+TY_ACCOUNT
+TY_TRANSACTION
+TY_TRANSACTION_T
+TY_AMOUNT
 
-Add amount to the existing balance.
-
-Update the account table (ZBANK_ACCOUNT).
-
-Log the transaction in ZBANK_TRANSACTIONS.
-
-- ## ZBANK_WITHDRAW_MONEY
+- ## ZCL_WITHDRAW
 
 **Purpose:** Withdraws money from an ATM.
+METHODS
+
 
 **Parameters:**
 
@@ -36,64 +39,42 @@ IV_AMOUNT (Input) – Amount to be withdrawn.
 
 EV_NEW_BALANCE (Output) – Updated account balance.
 
-**Logic:**
+**TYPES:**
 
-Validate card, PIN, and account balance.
 
-Check ATM cash availability.
 
-Deduct amount from account balance.
-
-Update ZBANK_ACCOUNT and ZBANK_ATM_CASH.
-
-Log the transaction in ZBANK_TRANSACTIONS.
-
-- ## ZBANK_DISPLAY_BALANCE
+- ## ZCL_DISPLAY
 
 **Purpose:** Displays the current account balance.
+METHODS:
+CHECK_BALANCE
+CHECK_ATM_BALANCE
+
 
 **Parameters:**
 
-IV_ACCOUNT_ID (Input) – Account ID.
+IV_ACCOUNT_ID (IMPORTING) – Account ID.
 
-EV_BALANCE (Output) – Current balance.
+EV_BALANCE (EXPORTING) – Current balance.
 
-**Logic:**
+**TYPES:**
 
-Fetch and return balance from ZBANK_ACCOUNT.
+THERE IS NO TYPES.
 
-- ## ZBANK_VALIDATE_CARD
+- ## ZCL_VALIDATION
 
 **Purpose:** Validates a card and PIN authentication.
+METHODS:
+CHECK_STATUS
 
 **Parameters:**
 
-IV_CARD_ID (Input) – Card ID.
+IC_DETAILS (IMPORTING).
+EC_DETAILS(EXPORTING).
 
-IV_PIN (Input) – PIN.
+**TYPES:**
 
-EV_VALID (Output) – Success flag.
+TY_CARD_DETAILS
+TY_CARDTY_CARD_D
 
-**Logic:**
 
-Check if the card exists in ZBANK_CARD.
-
-Validate PIN against stored PIN.
-
-Return validation status.
-
-- ## ZBANK_UPDATE_ATM_CASH
-
-**Purpose:** Updates ATM cash levels after withdrawal.
-
-**Parameters:**
-
-IV_ATM_ID (Input) – ATM Identifier.
-
-IT_CASH_DENOMINATIONS (Input) – Table of cash denominations withdrawn.
-
-**Logic:**
-
-Deduct withdrawn amounts from ZBANK_ATM_CASH.
-
-Update cash levels in the database.
