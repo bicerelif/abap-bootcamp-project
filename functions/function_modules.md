@@ -1,4 +1,4 @@
-# 2️⃣ Function Modules
+# 2️⃣ Class Modules
 
 - ## ZBANK_DEPOSIT_MONEY
 
