@@ -21,23 +21,7 @@ TY_TRANSACTION
 TY_TRANSACTION_T
 TY_AMOUNT
 
-- ## ZCL_WITHDRAW
 
-**METHODS::** .
-
-
-
-**Parameters:**
-
-IV_CARD_ID (Input) – Card ID used for withdrawal.
-
-IV_PIN (Input) – PIN for authentication.
-
-IV_AMOUNT (Input) – Amount to be withdrawn.
-
-EV_NEW_BALANCE (Output) – Updated account balance.
-
-**TYPES:**
 
 
 
@@ -47,7 +31,7 @@ EV_NEW_BALANCE (Output) – Updated account balance.
 
 CHECK_BALANCE
 CHECK_ATM_BALANCE
-
+WITHDRAW
 
 **Parameters:**
 
@@ -57,7 +41,7 @@ EV_BALANCE (EXPORTING) – Current balance.
 
 **TYPES:**
 
-THERE IS NO TYPES.
+ZBANK_ATM_CASH_TAB
 
 - ## ZCL_VALIDATION
 
