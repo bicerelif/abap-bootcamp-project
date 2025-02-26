@@ -1,1 +1,18 @@
+REPORT ZBANK_EMPLOYEE_POP.
 
+DATA : lwa_emp_data TYPE zbank_employee,
+       lit_emp_data TYPE TABLE OF zbank_employee.
+
+lwa_emp_data-emp_id = cl_reca_guid=>get_new_guid( ).
+lwa_emp_data-emp_pin = '0001'.
+lwa_emp_data-emp_first_name = 'Aska'.
+lwa_emp_data-emp_last_name = 'Maao'.
+lwa_emp_data-emp_dob = '20030907'.
+lwa_emp_data-emp_address = 'ALabaa il 1.'.
+lwa_emp_data-emp_phone = '1892019'.
+APPEND lwa_emp_data TO lit_emp_data.
+
+
+LOOP AT lit_emp_data INTO lwa_emp_data.
+  INSERT ZBANK_EMPLOYEE FROM lwa_emp_data.
+ENDLOOP.
