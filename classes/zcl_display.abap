@@ -64,3 +64,37 @@
     ev_enough_cash = abap_true.
     ev_message = 'Withdrawal possible'.
   ENDMETHOD.
+
+
+
+
+
+class ZCL_DISPLAY definition
+  public
+  final
+  create public .
+
+public section.
+
+  types:
+    ZBANK_ATM_CASH_TAB type TABLE OF ZBANK_ATM_CASH_T .
+
+  class-methods CHECK_BALANCE
+    importing
+      !IV_CARD_ID type ZBANK_CARD_TA-CARD_ID
+    exporting
+      !EV_BALANCE type ZBANK_ACCOUNT_TA-BALANCE .
+  class-methods CHECK_ATM_BALANCE
+    importing
+      !IV_ATM_NR type ZBANK_ATM_CASH_T-ATM_NR
+      !IV_WITHDRAW_AMOUNT type ZBANK_ACCOUNT_TA-BALANCE
+    exporting
+      !EV_TOTAL_CASH type ZBANK_ACCOUNT_TA-BALANCE
+      !EV_ENOUGH_CASH type ABAP_BOOL
+      !EV_MESSAGE type STRING
+      !ET_DENOMINATIONS type ZBANK_ATM_CASH_TAB .
+  class-methods WITHDRAW
+    importing
+      !IV_ATM_NR type ZBANK_ATM_CASH_T-ATM_NR
+      !IV_CARD_ID type ZBANK_CARD_TA-CARD_ID
+      !IV_WITHDRAW_AMOUNT type ZBANK_ACCOUNT_TA-BALANCE .
