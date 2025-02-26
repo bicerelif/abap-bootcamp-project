@@ -60,7 +60,7 @@
 
 
 
-Employee (`ZBANK_Employee`)
+# ATM Employee (`ZBANK_EMPLOYEE`)
 
 | Field Name   | Data Element | Type    | Description                |
 |-------------|-------------|---------|----------------------------|
