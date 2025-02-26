@@ -17,7 +17,7 @@ This project consists of **custom tables**, **class**, and **reports**:
 - **Bank Card Table (`ZBANK_CARD_TA`)** – Links bank accounts to cards.
 - **Transaction History Table (`ZBANK_TRANSACTIO`)** – Logs customer transactions.
 - **ATM Cash Availability Table (`ZBANK_ATM_CASH_TA`)** – Tracks ATM banknote availability.
-
+- **ATM Employee Table (`ZBANK_ATM_EMPLOYEE`)** 
 ### 2️⃣ **Classes**
 - `ZCL_DEPOSIT` – Deposits money into an account.
 - `ZCL_WITHDRAW` – Withdraws money from an ATM.
