@@ -1,5 +1,5 @@
 # **REPORTS**
-## 🔹 **ALV Report 1:** Customer Account Balance (ZBANK_BALANCE_REPORT)
+## 🔹 **ALV Report 1:** Z_ALV_REPO.)
 
 📌 Purpose:
 
@@ -9,7 +9,7 @@ Displays all customers with their account balance.
 - Display results in an ALV Grid.
 - Provide a selection screen for filtering by Customer ID or Account ID.
 
-## 🔹 **ALV Report 2:** Transaction History (ZBANK_TRANSACTION_REPORT)
+## 🔹 **ALV Report 2:** Z_ALV_REPO2.T)
 
 📌 Purpose:
 
