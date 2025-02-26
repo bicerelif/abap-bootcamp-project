@@ -56,3 +56,18 @@
 | `ATM_NR`      |        |   | Unique ATM Identifier       |
 | `DENOMINATION` | INT4      |   | Banknote (5, 10, 20, 50, 100) |
 | `QUANTITY`    | INT4       |      | Number of Banknotes Available |
+
+
+
+
+Employee (`ZBANK_Employee`)
+
+| Field Name   | Data Element | Type    | Description                |
+|-------------|-------------|---------|----------------------------|
+| `EMP_ID`   | GUID     | Key     |         |
+| `EMP_PIN` | CHAR4      |  |   |
+| `EMP_FIRST_NAME`       | CHAR30       |         |               |
+| `EMP_LAST_NAME`    | CHAR30       |         |   |
+| `EMP_DOB`   | dats     |      |        |
+| `EMP_ADDRESS`       | CHAR100       |         |               |
+| `EMP_PHONE`    | CHAR15       |         |    |
