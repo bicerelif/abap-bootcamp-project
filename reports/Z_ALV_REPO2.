@@ -1,0 +1,166 @@
+REPORT Z_ALV_REPO2.
+
+*TABLES: zbank_transactio.
+*
+*DATA: gt_transac TYPE TABLE OF zbank_transactio,
+*      gs_transac TYPE zbank_transactio.
+*
+*DATA: gt_fieldcat TYPE TABLE OF slis_fieldcat_alv,
+*      gs_fieldcat TYPE slis_fieldcat_alv.
+*
+*DATA: gs_layout TYPE slis_layout_alv.
+*DATA: g_repid TYPE sy-repid.
+*
+*
+*SELECT * FROM zbank_transactio INTO TABLE gt_transac.
+*
+*IF gt_transac IS INITIAL.
+*  MESSAGE 'No data found' TYPE 'I'.
+*  EXIT.
+*ENDIF.
+
+*TYPES: BEGIN OF ty_transaction,
+*         transaction_id  TYPE guid,
+*         account_id      TYPE char12,
+*         card_id         TYPE char16,
+*         transaction_type TYPE char10,
+*         transaction_date TYPE DATS,
+*         amount          TYPE CURR_5,
+*         status          TYPE char1,
+*       END OF ty_transaction.
+*
+*DATA: lt_transactions TYPE TABLE OF ty_transaction,
+*      lv_subrc        TYPE subrc,
+*      lo_alv          TYPE REF TO cl_salv_table.
+*
+*
+*START-OF-SELECTION.
+*
+*  " Step 1: Fetch Data from Database
+*  CLEAR lt_transactions.
+*
+*  SELECT transaction_id,
+*         account_id,
+*         card_id,
+*         transaction_type,
+*         transaction_date,
+*         amount,
+*         status
+*    FROM zbank_transactio
+*    INTO TABLE @lt_transactions.
+*
+*
+*** Set ALV Layout
+**g_repid = sy-repid.
+**gs_layout-zebra = 'X'.  " Enable zebra pattern (striped rows)
+**gs_layout-colwidth_optimize = 'X'.  " Auto column width
+*
+*  " Step 2: Handle no data found scenario
+*  IF sy-subrc <> 0.
+*    MESSAGE 'No records found for the selected date range.' TYPE 'I'.
+*    EXIT.
+*  ENDIF.
+*
+*  " Step 3: Display ALV using CL_SALV_TABLE
+*  TRY.
+*      " Create the ALV grid object
+*      CALL METHOD cl_salv_table=>factory
+*        IMPORTING
+*          r_salv_table = lo_alv
+*        CHANGING
+*          t_table = lt_transactions.
+*
+*      " Display the ALV grid
+*      lo_alv->display( ).
+*    CATCH cx_salv_msg INTO DATA(lx_salv_error).
+*      " Handle errors during ALV creation
+*      MESSAGE lx_salv_error->get_text( ) TYPE 'E'.
+*  ENDTRY.
+*
+*END-OF-SELECTION.
+
+
+TABLES: zbank_transactio.
+
+DATA: gt_transact TYPE TABLE OF zbank_transactio,
+      gs_transact TYPE zbank_transactio.
+
+DATA: gt_fieldcat TYPE TABLE OF slis_fieldcat_alv,
+      gs_fieldcat TYPE slis_fieldcat_alv.
+
+DATA: gs_layout TYPE slis_layout_alv.
+DATA: g_repid TYPE sy-repid.
+
+
+SELECT * FROM zbank_transactio INTO TABLE gt_transact.
+
+IF gt_transact IS INITIAL.
+  MESSAGE 'No data found' TYPE 'I'.
+  EXIT.
+ENDIF.
+
+CLEAR gs_fieldcat.
+gs_fieldcat-fieldname = 'TRANSACTION_ID'.
+gs_fieldcat-seltext_m = 'TRANSACTION ID'.
+gs_fieldcat-outputlen = 35.
+APPEND gs_fieldcat TO gt_fieldcat.
+
+CLEAR gs_fieldcat.
+gs_fieldcat-fieldname = 'ACCOUNT_ID'.
+gs_fieldcat-seltext_m = 'ACCOUNT ID'.
+gs_fieldcat-outputlen = 25.
+APPEND gs_fieldcat TO gt_fieldcat.
+
+CLEAR gs_fieldcat.
+gs_fieldcat-fieldname = 'CARD_ID'.
+gs_fieldcat-seltext_m = 'CARD ID'.
+gs_fieldcat-outputlen = 25.
+APPEND gs_fieldcat TO gt_fieldcat.
+
+CLEAR gs_fieldcat.
+gs_fieldcat-fieldname = 'TRANSACTION_TYPE'.
+gs_fieldcat-seltext_m = 'TRANSACTION TYPE'.
+gs_fieldcat-outputlen = 15.
+APPEND gs_fieldcat TO gt_fieldcat.
+
+
+CLEAR gs_fieldcat.
+gs_fieldcat-fieldname = 'AMOUNT'.
+gs_fieldcat-seltext_m = 'AMOUNT'.
+gs_fieldcat-outputlen = 15.
+APPEND gs_fieldcat TO gt_fieldcat.
+
+
+CLEAR gs_fieldcat.
+gs_fieldcat-fieldname = 'TRANSACTION_DATE'.
+gs_fieldcat-seltext_m = 'TRANSACTION DATE'.
+gs_fieldcat-outputlen = 15.
+APPEND gs_fieldcat TO gt_fieldcat.
+
+
+CLEAR gs_fieldcat.
+gs_fieldcat-fieldname = 'STATUS'.
+gs_fieldcat-seltext_m = 'STATUS'.
+gs_fieldcat-outputlen = 15.
+APPEND gs_fieldcat TO gt_fieldcat.
+
+
+g_repid = sy-repid.
+gs_layout-zebra = 'X'.
+gs_layout-colwidth_optimize = 'X'.
+
+
+CALL FUNCTION 'REUSE_ALV_GRID_DISPLAY'
+  EXPORTING
+    i_callback_program = g_repid
+    is_layout          = gs_layout
+    it_fieldcat        = gt_fieldcat
+  TABLES
+    t_outtab           = gt_transact
+  EXCEPTIONS
+    program_error      = 1
+    others             = 2.
+
+IF sy-subrc <> 0.
+  MESSAGE 'Error displaying ALV' TYPE 'E'.
+ENDIF.
