@@ -26,8 +26,8 @@ This project consists of **custom tables**, **class**, and **reports**:
 
 
 ### 3️⃣ **Reports & Screens**
-- **ATM Transaction Report** – Displays transaction history.
-- **ATM Cash Status Report** – Shows cash availability in ATMs.
+- **Z_ALV_REPO.** – Displays transaction history.
+- **Z_ALV_REPO2.** – Shows cash availability in ATMs.
 
 
 ## 🛠️ Technologies Used
